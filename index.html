@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World</title>
+  <meta name="description" content="Hello World - Official Band Website">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --win-bg: #C0C0C0;
+      --win-dark: #0A0A0A;
+      --win-light: #FFFFFF;
+      --win-mid-dark: rgba(65, 65, 67, 0.75);
+      --win-mid-light: #D1D3D4;
+      --desktop-bg: #008080;
+      --title-active: linear-gradient(90deg, #2B6991 0%, #1E93D0 40%, #1E93D0 60%, #5BBCDB 100%);
+      --title-inactive: linear-gradient(90deg, #808080 0%, #B5B5B5 100%);
+      --bevel-out:
+        -2px -2px 0px 0px var(--win-dark) inset,
+         2px  2px 0px 0px var(--win-mid-light) inset,
+        -4px -4px 0px 0px var(--win-mid-dark) inset,
+         4px  4px 0px 0px var(--win-light) inset;
+      --bevel-in:
+         2px  2px 0px 0px var(--win-dark) inset,
+        -2px -2px 0px 0px var(--win-mid-light) inset,
+         4px  4px 0px 0px var(--win-mid-dark) inset,
+        -4px -4px 0px 0px var(--win-light) inset;
+      --bevel-out-sm:
+        -1px -1px 0px 0px var(--win-dark) inset,
+         1px  1px 0px 0px var(--win-mid-light) inset,
+        -2px -2px 0px 0px var(--win-mid-dark) inset,
+         2px  2px 0px 0px var(--win-light) inset;
+      --bevel-in-sm:
+         1px  1px 0px 0px var(--win-dark) inset,
+        -1px -1px 0px 0px var(--win-mid-light) inset,
+         2px  2px 0px 0px var(--win-mid-dark) inset,
+        -2px -2px 0px 0px var(--win-light) inset;
+    }
+
+    body {
+      font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+      font-size: 12px;
+      background-color: var(--desktop-bg);
+      height: 100vh;
+      overflow: hidden;
+      cursor: default;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== DESKTOP ===== */
+    .desktop {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 40px);
+      overflow: hidden;
+    }
+
+    /* ===== DESKTOP ICONS ===== */
+    .desktop-icon {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #fff;
+      width: 96px;
+      padding: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .desktop-icon:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px dotted rgba(255, 255, 255, 0.5);
+    }
+
+    .desktop-icon:active, .desktop-icon.selected {
+      background: rgba(0, 0, 128, 0.4);
+      border: 1px dotted #fff;
+    }
+
+    .desktop-icon img, .desktop-icon svg {
+      width: 64px;
+      height: 64px;
+      image-rendering: pixelated;
+    }
+
+    .desktop-icon .icon-label {
+      font-size: 12px;
+      text-align: center;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    /* ===== WINDOW COMPONENT ===== */
+    .window {
+      position: absolute;
+      background: var(--win-bg);
+      box-shadow: var(--bevel-out);
+      display: none;
+      flex-direction: column;
+      min-width: 300px;
+    }
+
+    .window.open {
+      display: flex;
+    }
+
+    .title-bar {
+      background: var(--title-inactive);
+      display: flex;
+      align-items: center;
+      padding: 2px 4px;
+      gap: 4px;
+      min-height: 22px;
+      user-select: none;
+      cursor: grab;
+    }
+
+    .title-bar.active {
+      background: var(--title-active);
+    }
+
+    .title-bar:active { cursor: grabbing; }
+
+    .title-bar-text {
+      font-weight: bold;
+      color: #fff;
+      font-size: 12px;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .title-bar-controls {
+      display: flex;
+      gap: 2px;
+    }
+
+    .title-bar-btn {
+      width: 16px;
+      height: 14px;
+      background: var(--win-bg);
+      box-shadow: var(--bevel-out-sm);
+      border: none;
+      font-size: 9px;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .title-bar-btn:active {
+      box-shadow: var(--bevel-in-sm);
+    }
+
+    .window-body {
+      flex: 1;
+      overflow-y: auto;
+      margin: 4px;
+      padding: 8px;
+      background: #fff;
+      box-shadow:
+        1px 1px 0px 0px var(--win-light),
+       -1px -1px 0px 0px var(--win-mid-light),
+        inset 1px 1px 0px 0px var(--win-mid-dark),
+        inset -1px -1px 0px 0px var(--win-light);
+      border: 1px solid var(--win-dark);
+    }
+
+    .window-body.no-pad {
+      padding: 0;
+      background: var(--win-bg);
+      border: none;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      background: var(--win-bg);
+      box-shadow: var(--bevel-out-sm);
+      border: none;
+      font-family: inherit;
+      font-size: 11px;
+      padding: 3px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:active { box-shadow: var(--bevel-in-sm); }
+
+    /* ===== ABOUT ===== */
+    .about-content h2 { font-size: 16px; margin-bottom: 8px; }
+    .about-content h3 { font-size: 13px; margin: 12px 0 4px; }
+    .about-content p { margin-bottom: 8px; line-height: 1.5; }
+    .about-content ul { margin: 4px 0 8px 20px; line-height: 1.6; }
+    .about-content a { color: #0000EE; }
+    .about-content a:visited { color: #551A8B; }
+
+    /* ===== LINKS LIST ===== */
+    .links-list ul {
+      list-style: none; margin: 0; padding: 0;
+    }
+    .links-list li {
+      padding: 6px 4px;
+      border-bottom: 1px solid #D1D3D4;
+    }
+    .links-list li:last-child { border-bottom: none; }
+    .links-list a {
+      color: #0000EE; text-decoration: underline;
+      font-size: 12px; display: block;
+    }
+    .links-list a:visited { color: #551A8B; }
+    .links-list a:hover { color: #FF0000; }
+
+    /* ===== SHOWS TABLE ===== */
+    .shows-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .shows-table th {
+      background: #808080; color: #fff; text-align: left;
+      padding: 4px 8px; font-weight: bold; border-bottom: 2px solid var(--win-dark);
+    }
+    .shows-table td { padding: 4px 8px; }
+    .shows-table tr:nth-child(odd) td { background: #EDEDED; }
+    .shows-table tr:nth-child(even) td { background: var(--win-mid-light); }
+    .shows-table .btn { font-size: 10px; padding: 2px 8px; }
+
+    /* ===== PHOTO GALLERY ===== */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 8px; padding: 4px;
+    }
+    .gallery-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; padding: 6px; cursor: pointer; border: 1px solid transparent;
+    }
+    .gallery-item:hover { background: #E0E0E0; }
+    .gallery-item.selected { background: #000080; color: #fff; border: 1px dotted #fff; }
+    .gallery-item img {
+      width: 80px; height: 80px; object-fit: cover;
+      border: 1px solid var(--win-dark); background: #ddd;
+    }
+    .gallery-item span { font-size: 10px; text-align: center; word-break: break-all; }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.85); z-index: 5000;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; box-shadow: var(--bevel-out); }
+    .lightbox-close { position: absolute; top: 12px; right: 12px; }
+
+    /* ===== MUSIC PLAYER ===== */
+    .player-display {
+      background: #000; color: #0f0;
+      font-family: "Courier New", monospace; font-size: 11px;
+      padding: 6px 8px; margin-bottom: 6px;
+      box-shadow: var(--bevel-in-sm);
+      display: flex; justify-content: space-between; min-height: 20px;
+    }
+    .player-controls { padding: 6px; background: var(--win-bg); }
+    .player-buttons { display: flex; gap: 4px; margin-bottom: 6px; }
+    .player-btn {
+      background: var(--win-bg); box-shadow: var(--bevel-out-sm);
+      border: none; width: 28px; height: 22px; font-size: 11px;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-family: inherit;
+    }
+    .player-btn:active, .player-btn.active { box-shadow: var(--bevel-in-sm); }
+    .player-sliders { display: flex; align-items: center; gap: 8px; }
+    .player-sliders label { font-size: 10px; color: #333; }
+
+    /* Range inputs */
+    input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      height: 20px; background: transparent; cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 4px; background: #808080;
+      box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #dfdfdf;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 10px; height: 18px;
+      background: var(--win-bg); box-shadow: var(--bevel-out-sm); margin-top: -7px;
+    }
+    input[type="range"]::-moz-range-track {
+      height: 4px; background: #808080;
+      box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #dfdfdf; border: none;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 10px; height: 18px; background: var(--win-bg);
+      box-shadow: var(--bevel-out-sm); border: none; border-radius: 0;
+    }
+    #progress { flex: 1; }
+    #volume { width: 70px; }
+
+    /* Playlist */
+    .playlist {
+      max-height: 220px; overflow-y: auto;
+      border: 1px solid var(--win-dark); box-shadow: var(--bevel-in-sm);
+    }
+    .song-row {
+      display: flex; align-items: center; padding: 3px 8px;
+      gap: 8px; font-size: 11px; cursor: pointer; user-select: none;
+    }
+    .song-row:nth-child(odd) { background: #EDEDED; }
+    .song-row:nth-child(even) { background: var(--win-mid-light); }
+    .song-row:hover { background: #B0C4DE; }
+    .song-row.active { background: #000080; color: #fff; }
+    .song-row.active .song-duration { color: #ccc; }
+    .song-num { width: 18px; text-align: right; color: #666; }
+    .song-row.active .song-num { color: #aaa; }
+    .song-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .song-duration { color: #666; font-size: 10px; width: 36px; text-align: right; }
+    .download-btn {
+      font-size: 9px; padding: 1px 6px; text-decoration: none; color: #000;
+      background: var(--win-bg); box-shadow: var(--bevel-out-sm); white-space: nowrap;
+    }
+    .download-btn:active { box-shadow: var(--bevel-in-sm); }
+    .song-row.active .download-btn { color: #000; }
+
+    /* ===== TASKBAR ===== */
+    .taskbar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 40px; background: var(--win-bg);
+      box-shadow: var(--bevel-out-sm);
+      display: flex; align-items: center;
+      padding: 4px; gap: 4px; z-index: 4000;
+    }
+    .start-btn {
+      display: flex; align-items: center; gap: 4px;
+      font-weight: bold; font-size: 12px; padding: 3px 8px; height: 28px;
+    }
+    .start-btn img { width: 18px; height: 18px; image-rendering: pixelated; }
+    .taskbar-divider {
+      width: 2px; height: 28px;
+      border-left: 1px solid #808080; border-right: 1px solid #fff; margin: 0 2px;
+    }
+    .taskbar-windows { display: flex; gap: 3px; flex: 1; overflow: hidden; }
+    .taskbar-item {
+      font-size: 11px; padding: 3px 8px; height: 24px; max-width: 160px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .taskbar-item.active { box-shadow: var(--bevel-in-sm); }
+    .taskbar-clock {
+      box-shadow: var(--bevel-in-sm); padding: 3px 12px;
+      font-size: 11px; height: 24px;
+      display: flex; align-items: center; white-space: nowrap;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .desktop { overflow: auto; }
+      .window { min-width: 260px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop" id="desktop">
+
+    <!-- ===== DESKTOP ICONS (scattered across desktop) ===== -->
+
+    <!-- Music Player — music note icon (media player style) -->
+    <a class="desktop-icon" data-opens="music-player" style="top: 30%; left: 38%;">
+      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <!-- Orange/gold music note on dark background -->
+        <rect x="1" y="1" width="30" height="30" fill="#000080"/>
+        <rect x="2" y="2" width="28" height="28" fill="#000058"/>
+        <rect x="0" y="0" width="32" height="1" fill="#808080"/>
+        <rect x="0" y="0" width="1" height="32" fill="#808080"/>
+        <rect x="0" y="31" width="32" height="1" fill="#404040"/>
+        <rect x="31" y="0" width="1" height="32" fill="#404040"/>
+        <!-- Beam -->
+        <rect x="11" y="5" width="14" height="2" fill="#FFB800"/>
+        <rect x="11" y="7" width="14" height="1" fill="#CC9200"/>
+        <!-- Stems -->
+        <rect x="11" y="5" width="2" height="17" fill="#FFB800"/>
+        <rect x="13" y="5" width="1" height="17" fill="#CC9200"/>
+        <rect x="23" y="5" width="2" height="13" fill="#FFB800"/>
+        <rect x="25" y="5" width="1" height="13" fill="#CC9200"/>
+        <!-- Left note head -->
+        <rect x="6" y="21" width="7" height="4" fill="#FFB800"/>
+        <rect x="5" y="22" width="1" height="2" fill="#FFB800"/>
+        <rect x="6" y="25" width="7" height="1" fill="#CC9200"/>
+        <rect x="13" y="22" width="1" height="3" fill="#CC9200"/>
+        <!-- Right note head -->
+        <rect x="18" y="17" width="7" height="4" fill="#FFB800"/>
+        <rect x="17" y="18" width="1" height="2" fill="#FFB800"/>
+        <rect x="18" y="21" width="7" height="1" fill="#CC9200"/>
+        <rect x="25" y="18" width="1" height="3" fill="#CC9200"/>
+        <!-- Highlights -->
+        <rect x="7" y="22" width="2" height="1" fill="#FFD866"/>
+        <rect x="19" y="18" width="2" height="1" fill="#FFD866"/>
+      </svg>
+      <span class="icon-label">Music Player</span>
+    </a>
+
+    <!-- About — notepad icon -->
+    <a class="desktop-icon" data-opens="about" style="top: 45%; left: 55%;">
+      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <!-- Page body -->
+        <rect x="6" y="2" width="20" height="28" fill="#FFFFF0"/>
+        <rect x="6" y="2" width="20" height="3" fill="#0000AA"/>
+        <!-- Borders -->
+        <rect x="5" y="2" width="1" height="28" fill="#808080"/>
+        <rect x="26" y="2" width="1" height="28" fill="#404040"/>
+        <rect x="6" y="30" width="20" height="1" fill="#404040"/>
+        <rect x="6" y="2" width="20" height="1" fill="#C0C0C0"/>
+        <!-- Title bar text -->
+        <rect x="8" y="3" width="8" height="1" fill="#FFF"/>
+        <!-- Spiral binding -->
+        <rect x="3" y="5" width="4" height="2" fill="#FF0000"/>
+        <rect x="3" y="10" width="4" height="2" fill="#FF0000"/>
+        <rect x="3" y="15" width="4" height="2" fill="#FF0000"/>
+        <rect x="3" y="20" width="4" height="2" fill="#FF0000"/>
+        <rect x="3" y="25" width="4" height="2" fill="#FF0000"/>
+        <!-- Text lines -->
+        <rect x="9" y="8" width="14" height="1" fill="#000080"/>
+        <rect x="9" y="11" width="14" height="1" fill="#000080"/>
+        <rect x="9" y="14" width="10" height="1" fill="#000080"/>
+        <rect x="9" y="17" width="14" height="1" fill="#000080"/>
+        <rect x="9" y="20" width="12" height="1" fill="#000080"/>
+        <rect x="9" y="23" width="8" height="1" fill="#000080"/>
+        <rect x="9" y="26" width="14" height="1" fill="#000080"/>
+      </svg>
+      <span class="icon-label">About</span>
+    </a>
+
+    <!-- Shows — calendar icon -->
+    <a class="desktop-icon" data-opens="shows" style="top: 58%; left: 25%;">
+      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <!-- Calendar body -->
+        <rect x="2" y="4" width="28" height="26" fill="#FFFFFF"/>
+        <!-- Red header -->
+        <rect x="2" y="4" width="28" height="5" fill="#CC0000"/>
+        <rect x="3" y="5" width="26" height="3" fill="#EE0000"/>
+        <!-- Border/shadow -->
+        <rect x="1" y="4" width="1" height="26" fill="#C0C0C0"/>
+        <rect x="30" y="4" width="1" height="26" fill="#808080"/>
+        <rect x="2" y="30" width="28" height="1" fill="#808080"/>
+        <!-- Ring bindings -->
+        <rect x="8" y="1" width="3" height="5" fill="#808080"/>
+        <rect x="9" y="1" width="1" height="5" fill="#C0C0C0"/>
+        <rect x="21" y="1" width="3" height="5" fill="#808080"/>
+        <rect x="22" y="1" width="1" height="5" fill="#C0C0C0"/>
+        <!-- Grid cells row 1 -->
+        <rect x="4" y="11" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="11" y="11" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="18" y="11" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="25" y="11" width="4" height="4" fill="#E8E8E8"/>
+        <!-- Grid cells row 2 -->
+        <rect x="4" y="17" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="11" y="17" width="5" height="4" fill="#FFCC00"/>
+        <rect x="18" y="17" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="25" y="17" width="4" height="4" fill="#E8E8E8"/>
+        <!-- Grid cells row 3 -->
+        <rect x="4" y="23" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="11" y="23" width="5" height="4" fill="#E8E8E8"/>
+        <rect x="18" y="23" width="5" height="4" fill="#E8E8E8"/>
+        <!-- Grid lines -->
+        <rect x="3" y="10" width="26" height="1" fill="#C0C0C0"/>
+        <rect x="3" y="16" width="26" height="1" fill="#C0C0C0"/>
+        <rect x="3" y="22" width="26" height="1" fill="#C0C0C0"/>
+        <rect x="10" y="10" width="1" height="18" fill="#C0C0C0"/>
+        <rect x="17" y="10" width="1" height="18" fill="#C0C0C0"/>
+        <rect x="24" y="10" width="1" height="18" fill="#C0C0C0"/>
+      </svg>
+      <span class="icon-label">Shows</span>
+    </a>
+
+    <!-- Misc — classic folder icon -->
+    <a class="desktop-icon" data-opens="misc" style="top: 10%; left: 42%;">
+      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <!-- Folder tab -->
+        <rect x="2" y="6" width="12" height="3" fill="#FFD866"/>
+        <rect x="1" y="7" width="1" height="2" fill="#FFE8A0"/>
+        <rect x="14" y="7" width="1" height="2" fill="#CC9900"/>
+        <!-- Folder body -->
+        <rect x="1" y="9" width="30" height="19" fill="#FFCC00"/>
+        <!-- Bevels -->
+        <rect x="0" y="9" width="1" height="19" fill="#FFE066"/>
+        <rect x="1" y="8" width="30" height="1" fill="#FFE066"/>
+        <rect x="31" y="9" width="1" height="19" fill="#CC9900"/>
+        <rect x="1" y="28" width="30" height="1" fill="#CC9900"/>
+        <!-- Front face highlight -->
+        <rect x="2" y="12" width="28" height="1" fill="#FFE066"/>
+        <rect x="2" y="10" width="28" height="2" fill="#FFD866"/>
+        <!-- Subtle shadow -->
+        <rect x="2" y="27" width="28" height="1" fill="#E6B800"/>
+      </svg>
+      <span class="icon-label">Misc</span>
+    </a>
+
+    <!-- Links — globe/www icon -->
+    <a class="desktop-icon" data-opens="links" style="top: 28%; left: 72%;">
+      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <!-- Globe circle -->
+        <rect x="10" y="2" width="12" height="1" fill="#0066CC"/>
+        <rect x="7" y="3" width="3" height="1" fill="#0066CC"/>
+        <rect x="22" y="3" width="3" height="1" fill="#0066CC"/>
+        <rect x="5" y="4" width="2" height="2" fill="#0066CC"/>
+        <rect x="25" y="4" width="2" height="2" fill="#0066CC"/>
+        <rect x="4" y="6" width="1" height="3" fill="#0066CC"/>
+        <rect x="27" y="6" width="1" height="3" fill="#0066CC"/>
+        <rect x="3" y="9" width="1" height="6" fill="#0066CC"/>
+        <rect x="28" y="9" width="1" height="6" fill="#0066CC"/>
+        <rect x="4" y="15" width="1" height="3" fill="#0066CC"/>
+        <rect x="27" y="15" width="1" height="3" fill="#0066CC"/>
+        <rect x="5" y="18" width="2" height="2" fill="#0066CC"/>
+        <rect x="25" y="18" width="2" height="2" fill="#0066CC"/>
+        <rect x="7" y="20" width="3" height="1" fill="#0066CC"/>
+        <rect x="22" y="20" width="3" height="1" fill="#0066CC"/>
+        <rect x="10" y="21" width="12" height="1" fill="#0066CC"/>
+        <!-- Fill inside -->
+        <rect x="7" y="4" width="18" height="16" fill="#3399FF"/>
+        <rect x="5" y="6" width="22" height="12" fill="#3399FF"/>
+        <rect x="4" y="9" width="24" height="6" fill="#3399FF"/>
+        <!-- Horizontal lines (latitude) -->
+        <rect x="4" y="8" width="24" height="1" fill="#0066CC"/>
+        <rect x="3" y="12" width="26" height="1" fill="#0066CC"/>
+        <rect x="4" y="16" width="24" height="1" fill="#0066CC"/>
+        <!-- Vertical meridian -->
+        <rect x="15" y="2" width="2" height="20" fill="#0066CC"/>
+        <!-- Curved meridians -->
+        <rect x="11" y="3" width="1" height="18" fill="#0077DD"/>
+        <rect x="20" y="3" width="1" height="18" fill="#0077DD"/>
+        <!-- Continents (green patches) -->
+        <rect x="7" y="5" width="4" height="3" fill="#228B22"/>
+        <rect x="6" y="6" width="3" height="2" fill="#228B22"/>
+        <rect x="18" y="6" width="5" height="2" fill="#228B22"/>
+        <rect x="19" y="5" width="3" height="1" fill="#228B22"/>
+        <rect x="8" y="10" width="3" height="2" fill="#228B22"/>
+        <rect x="22" y="9" width="4" height="3" fill="#228B22"/>
+        <rect x="12" y="14" width="3" height="3" fill="#228B22"/>
+        <rect x="23" y="14" width="3" height="2" fill="#228B22"/>
+        <!-- Page curl / stand -->
+        <rect x="13" y="23" width="6" height="1" fill="#808080"/>
+        <rect x="11" y="24" width="10" height="1" fill="#808080"/>
+        <rect x="10" y="25" width="12" height="1" fill="#C0C0C0"/>
+        <rect x="8" y="26" width="16" height="2" fill="#808080"/>
+        <rect x="9" y="26" width="14" height="1" fill="#C0C0C0"/>
+      </svg>
+      <span class="icon-label">Links</span>
+    </a>
+
+    <!-- Email — envelope icon -->
+    <a class="desktop-icon" href="mailto:hello@example.com" style="top: 62%; left: 62%;">
+      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <!-- Envelope body -->
+        <rect x="2" y="6" width="28" height="20" fill="#FFFFF0"/>
+        <!-- Border -->
+        <rect x="1" y="6" width="1" height="20" fill="#D1D3D4"/>
+        <rect x="30" y="6" width="1" height="20" fill="#808080"/>
+        <rect x="2" y="26" width="28" height="1" fill="#808080"/>
+        <rect x="2" y="6" width="28" height="1" fill="#E8E8E8"/>
+        <!-- Flap (V shape) -->
+        <rect x="2" y="7" width="2" height="1" fill="#4040CC"/>
+        <rect x="4" y="8" width="2" height="1" fill="#4040CC"/>
+        <rect x="6" y="9" width="2" height="1" fill="#4040CC"/>
+        <rect x="8" y="10" width="2" height="1" fill="#4040CC"/>
+        <rect x="10" y="11" width="2" height="1" fill="#4040CC"/>
+        <rect x="12" y="12" width="2" height="1" fill="#4040CC"/>
+        <rect x="14" y="13" width="4" height="1" fill="#4040CC"/>
+        <rect x="18" y="12" width="2" height="1" fill="#4040CC"/>
+        <rect x="20" y="11" width="2" height="1" fill="#4040CC"/>
+        <rect x="22" y="10" width="2" height="1" fill="#4040CC"/>
+        <rect x="24" y="9" width="2" height="1" fill="#4040CC"/>
+        <rect x="26" y="8" width="2" height="1" fill="#4040CC"/>
+        <rect x="28" y="7" width="2" height="1" fill="#4040CC"/>
+        <!-- Stamp -->
+        <rect x="23" y="9" width="5" height="4" fill="#CC0000"/>
+        <rect x="24" y="10" width="3" height="2" fill="#FF4444"/>
+      </svg>
+      <span class="icon-label">Email</span>
+    </a>
+
+    <!-- ===== WINDOWS (all hidden by default) ===== -->
+
+    <!-- MUSIC PLAYER -->
+    <div class="window" id="music-player" style="width: 460px; top: 40px; left: 140px;">
+      <div class="title-bar">
+        <span class="title-bar-text">&#9835; Music Player</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn win-minimize" aria-label="Minimize">_</button>
+          <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
+        </div>
+      </div>
+      <div class="window-body no-pad">
+        <audio id="audio" preload="none"></audio>
+        <div class="player-controls">
+          <div class="player-display">
+            <span id="track-name">No track loaded</span>
+            <span id="track-time">0:00 / 0:00</span>
+          </div>
+          <div class="player-buttons">
+            <button class="player-btn" id="btn-prev" title="Previous">&#9198;</button>
+            <button class="player-btn" id="btn-play" title="Play">&#9654;</button>
+            <button class="player-btn" id="btn-pause" title="Pause" style="display:none">&#9646;&#9646;</button>
+            <button class="player-btn" id="btn-stop" title="Stop">&#9632;</button>
+            <button class="player-btn" id="btn-next" title="Next">&#9197;</button>
+          </div>
+          <div class="player-sliders">
+            <input type="range" id="progress" min="0" max="100" value="0" step="0.1">
+            <label>Vol</label>
+            <input type="range" id="volume" min="0" max="100" value="80">
+          </div>
+        </div>
+        <div class="playlist" id="playlist">
+          <div class="song-row" data-src="assets/audio/static (demo).mp3">
+            <span class="song-num">1</span>
+            <span class="song-title">static (demo).mp3</span>
+            <span class="song-duration"></span>
+            <a href="assets/audio/static (demo).mp3" download class="download-btn">FREE DL</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="window" id="about" style="width: 400px; top: 80px; left: 220px;">
+      <div class="title-bar">
+        <span class="title-bar-text">About - Hello World</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn win-minimize" aria-label="Minimize">_</button>
+          <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
+        </div>
+      </div>
+      <div class="window-body" style="max-height: 320px;">
+        <div class="about-content">
+          <h2>Hello World</h2>
+          <p>Welcome to our corner of the internet. Click around. Listen to some songs. Come see us play.</p>
+          <h3>Members</h3>
+          <ul>
+            <li>Member One - Guitar, Vocals</li>
+            <li>Member Two - Bass</li>
+            <li>Member Three - Drums</li>
+          </ul>
+          <h3>Bio</h3>
+          <p>Hello World is a band from [City, State]. We started playing music in [year] and haven't stopped since. Our sound is [describe your sound]. We record everything ourselves and release it for free because music should be free.</p>
+          <p>For booking inquiries, email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOWS -->
+    <div class="window" id="shows" style="width: 440px; top: 120px; left: 300px;">
+      <div class="title-bar">
+        <span class="title-bar-text">&#9734; Shows / Tour</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn win-minimize" aria-label="Minimize">_</button>
+          <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
+        </div>
+      </div>
+      <div class="window-body no-pad">
+        <table class="shows-table">
+          <thead>
+            <tr><th>Date</th><th>Venue</th><th>City</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Apr 15, 2026</td><td>The Venue</td><td>City, ST</td>
+              <td><button class="btn">Tickets</button></td>
+            </tr>
+            <tr>
+              <td>Apr 22, 2026</td><td>Another Place</td><td>Town, ST</td>
+              <td><button class="btn">Tickets</button></td>
+            </tr>
+            <tr>
+              <td>May 03, 2026</td><td>The Spot</td><td>Metro, ST</td>
+              <td><button class="btn">Tickets</button></td>
+            </tr>
+            <tr>
+              <td>May 10, 2026</td><td>Club Name</td><td>Place, ST</td>
+              <td><button class="btn">Tickets</button></td>
+            </tr>
+            <tr>
+              <td>Jun 01, 2026</td><td>Fest Grounds</td><td>Somewhere, ST</td>
+              <td><button class="btn">Tickets</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MISC -->
+    <div class="window" id="misc" style="width: 380px; top: 60px; left: 360px;">
+      <div class="title-bar">
+        <span class="title-bar-text">Misc</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn win-minimize" aria-label="Minimize">_</button>
+          <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
+        </div>
+      </div>
+      <div class="window-body no-pad" style="max-height: 340px;">
+        <div class="gallery-grid">
+          <div class="gallery-item" data-full="assets/images/photo01.jpg">
+            <img src="assets/images/photo01.jpg" alt="Photo 1"><span>photo01.jpg</span>
+          </div>
+          <div class="gallery-item" data-full="assets/images/photo02.jpg">
+            <img src="assets/images/photo02.jpg" alt="Photo 2"><span>photo02.jpg</span>
+          </div>
+          <div class="gallery-item" data-full="assets/images/photo03.jpg">
+            <img src="assets/images/photo03.jpg" alt="Photo 3"><span>photo03.jpg</span>
+          </div>
+          <div class="gallery-item" data-full="assets/images/photo04.jpg">
+            <img src="assets/images/photo04.jpg" alt="Photo 4"><span>photo04.jpg</span>
+          </div>
+          <div class="gallery-item" data-full="assets/images/photo05.jpg">
+            <img src="assets/images/photo05.jpg" alt="Photo 5"><span>photo05.jpg</span>
+          </div>
+          <div class="gallery-item" data-full="assets/images/photo06.jpg">
+            <img src="assets/images/photo06.jpg" alt="Photo 6"><span>photo06.jpg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="window" id="links" style="width: 320px; top: 100px; left: 400px;">
+      <div class="title-bar">
+        <span class="title-bar-text">Links</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn win-minimize" aria-label="Minimize">_</button>
+          <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="links-list">
+          <p style="margin-bottom: 10px; color: #808080; font-size: 11px;">Find us around the web:</p>
+          <ul>
+            <li><a href="https://spotify.com" target="_blank" rel="noopener">&#9654; Spotify</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">&#9654; Instagram</a></li>
+            <li><a href="https://bandcamp.com" target="_blank" rel="noopener">&#9654; Bandcamp</a></li>
+            <li><a href="mailto:hello@example.com">&#9654; Email (hello@example.com)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /desktop -->
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" alt="Full size photo">
+    <button class="btn lightbox-close" id="lightbox-close">&#10005; Close</button>
+  </div>
+
+  <!-- TASKBAR -->
+  <div class="taskbar">
+    <button class="btn start-btn" id="start-btn">&#9776; Hello World</button>
+    <div class="taskbar-divider"></div>
+    <div class="taskbar-windows" id="taskbar-windows"></div>
+    <div class="taskbar-clock" id="clock"></div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      var zIndex = 10;
+
+      // ── Window Management ──
+      function activateWindow(win) {
+        document.querySelectorAll('.window .title-bar').forEach(function (b) {
+          b.classList.remove('active');
+        });
+        win.querySelector('.title-bar').classList.add('active');
+        win.style.zIndex = ++zIndex;
+        // Update taskbar
+        document.querySelectorAll('.taskbar-item').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.windowId === win.id);
+        });
+      }
+
+      function openWindow(id) {
+        var win = document.getElementById(id);
+        if (!win) return;
+        win.classList.add('open');
+        activateWindow(win);
+        updateTaskbar();
+      }
+
+      function closeWindow(win) {
+        win.classList.remove('open');
+        updateTaskbar();
+      }
+
+      function minimizeWindow(win) {
+        win.classList.remove('open');
+        // Taskbar item stays so you can reopen
+      }
+
+      // Click anywhere on a window to bring it to front
+      document.querySelectorAll('.window').forEach(function (win) {
+        win.addEventListener('mousedown', function () { activateWindow(win); });
+      });
+
+      // Close / minimize buttons
+      document.querySelectorAll('.win-close').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          closeWindow(btn.closest('.window'));
+        });
+      });
+      document.querySelectorAll('.win-minimize').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          minimizeWindow(btn.closest('.window'));
+        });
+      });
+
+      // ── Dragging Windows ──
+      var dragWin = null, dragOffX = 0, dragOffY = 0;
+
+      document.querySelectorAll('.title-bar').forEach(function (bar) {
+        bar.addEventListener('mousedown', function (e) {
+          if (e.target.closest('.title-bar-btn')) return;
+          dragWin = bar.closest('.window');
+          var rect = dragWin.getBoundingClientRect();
+          dragOffX = e.clientX - rect.left;
+          dragOffY = e.clientY - rect.top;
+          activateWindow(dragWin);
+          e.preventDefault();
+        });
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!dragWin) return;
+        var x = e.clientX - dragOffX;
+        var y = e.clientY - dragOffY;
+        dragWin.style.left = x + 'px';
+        dragWin.style.top = y + 'px';
+        dragWin.style.right = 'auto';
+      });
+
+      document.addEventListener('mouseup', function () { dragWin = null; });
+
+      // ── Desktop Icon Clicks ──
+      document.querySelectorAll('.desktop-icon[data-opens]').forEach(function (icon) {
+        icon.addEventListener('click', function (e) {
+          e.preventDefault();
+          openWindow(this.dataset.opens);
+        });
+        icon.addEventListener('dblclick', function (e) { e.preventDefault(); });
+      });
+
+      // ── Taskbar ──
+      var taskbarWindows = document.getElementById('taskbar-windows');
+
+      function updateTaskbar() {
+        taskbarWindows.innerHTML = '';
+        document.querySelectorAll('.window').forEach(function (win) {
+          var title = win.querySelector('.title-bar-text').textContent;
+          var isOpen = win.classList.contains('open');
+          var btn = document.createElement('button');
+          btn.className = 'btn taskbar-item';
+          btn.dataset.windowId = win.id;
+          btn.textContent = title;
+          if (isOpen) {
+            var isActive = win.querySelector('.title-bar').classList.contains('active');
+            if (isActive) btn.classList.add('active');
+          } else {
+            btn.style.opacity = '0.6';
+          }
+          btn.addEventListener('click', function () {
+            if (win.classList.contains('open')) {
+              activateWindow(win);
+            } else {
+              openWindow(win.id);
+            }
+          });
+          taskbarWindows.appendChild(btn);
+        });
+      }
+      updateTaskbar();
+
+      // ── Audio Player ──
+      var audio = document.getElementById('audio');
+      var playlist = document.getElementById('playlist');
+      var rows = playlist.querySelectorAll('.song-row');
+      var trackName = document.getElementById('track-name');
+      var trackTime = document.getElementById('track-time');
+      var btnPlay = document.getElementById('btn-play');
+      var btnPause = document.getElementById('btn-pause');
+      var btnStop = document.getElementById('btn-stop');
+      var btnPrev = document.getElementById('btn-prev');
+      var btnNext = document.getElementById('btn-next');
+      var progress = document.getElementById('progress');
+      var volumeEl = document.getElementById('volume');
+      var currentIndex = -1;
+
+      function formatTime(s) {
+        if (isNaN(s)) return '0:00';
+        return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+      }
+
+      function loadTrack(index) {
+        if (index < 0 || index >= rows.length) return;
+        currentIndex = index;
+        var row = rows[index];
+        audio.src = row.dataset.src;
+        rows.forEach(function (r) { r.classList.remove('active'); });
+        row.classList.add('active');
+        trackName.textContent = row.querySelector('.song-title').textContent;
+        row.scrollIntoView({ block: 'nearest' });
+      }
+
+      function playAudio() {
+        if (currentIndex === -1) loadTrack(0);
+        audio.play();
+        btnPlay.style.display = 'none';
+        btnPause.style.display = '';
+      }
+
+      function pauseAudio() {
+        audio.pause();
+        btnPlay.style.display = '';
+        btnPause.style.display = 'none';
+      }
+
+      function stopAudio() {
+        audio.pause();
+        audio.currentTime = 0;
+        btnPlay.style.display = '';
+        btnPause.style.display = 'none';
+        progress.value = 0;
+      }
+
+      btnPlay.addEventListener('click', playAudio);
+      btnPause.addEventListener('click', pauseAudio);
+      btnStop.addEventListener('click', stopAudio);
+      btnPrev.addEventListener('click', function () {
+        if (currentIndex > 0) { loadTrack(currentIndex - 1); playAudio(); }
+      });
+      btnNext.addEventListener('click', function () {
+        if (currentIndex < rows.length - 1) { loadTrack(currentIndex + 1); playAudio(); }
+      });
+
+      audio.addEventListener('timeupdate', function () {
+        if (audio.duration) {
+          progress.value = (audio.currentTime / audio.duration) * 100;
+          trackTime.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
+        }
+      });
+
+      audio.addEventListener('ended', function () {
+        if (currentIndex < rows.length - 1) { loadTrack(currentIndex + 1); playAudio(); }
+        else stopAudio();
+      });
+
+      progress.addEventListener('input', function () {
+        if (audio.duration) audio.currentTime = (progress.value / 100) * audio.duration;
+      });
+
+      volumeEl.addEventListener('input', function () { audio.volume = volumeEl.value / 100; });
+      audio.volume = volumeEl.value / 100;
+
+      playlist.addEventListener('click', function (e) {
+        if (e.target.closest('.download-btn')) return;
+        var row = e.target.closest('.song-row');
+        if (!row) return;
+        loadTrack(Array.from(rows).indexOf(row));
+        playAudio();
+      });
+
+      // ── Photo Lightbox ──
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightbox-img');
+
+      document.querySelectorAll('.gallery-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+          lightboxImg.src = this.dataset.full;
+          lightbox.classList.add('open');
+        });
+      });
+
+      document.getElementById('lightbox-close').addEventListener('click', function () {
+        lightbox.classList.remove('open');
+      });
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) lightbox.classList.remove('open');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) lightbox.classList.remove('open');
+      });
+
+      // ── Taskbar Clock ──
+      function updateClock() {
+        var now = new Date();
+        var h = now.getHours(), m = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('clock').textContent = (h % 12 || 12) + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM');
+      }
+      updateClock();
+      setInterval(updateClock, 15000);
+
+    })();
+  </script>
+</body>
+</html>
