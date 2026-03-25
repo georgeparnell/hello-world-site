@@ -847,13 +847,100 @@
 
       document.addEventListener('mouseup', function () { dragWin = null; });
 
-      // ── Desktop Icon Clicks ──
-      document.querySelectorAll('.desktop-icon[data-opens]').forEach(function (icon) {
-        icon.addEventListener('click', function (e) {
+      // ── Dragging Icons ──
+      var dragIcon = null, iconOffX = 0, iconOffY = 0, iconDragged = false;
+      var DRAG_THRESHOLD = 5;
+      var iconStartX = 0, iconStartY = 0;
+
+      document.querySelectorAll('.desktop-icon').forEach(function (icon) {
+        icon.addEventListener('mousedown', function (e) {
+          if (e.button !== 0) return;
+          dragIcon = icon;
+          iconDragged = false;
+          iconStartX = e.clientX;
+          iconStartY = e.clientY;
+          var rect = icon.getBoundingClientRect();
+          iconOffX = e.clientX - rect.left;
+          iconOffY = e.clientY - rect.top;
           e.preventDefault();
-          openWindow(this.dataset.opens);
         });
-        icon.addEventListener('dblclick', function (e) { e.preventDefault(); });
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!dragIcon) return;
+        var dx = e.clientX - iconStartX;
+        var dy = e.clientY - iconStartY;
+        if (!iconDragged && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
+        iconDragged = true;
+        var desktop = document.getElementById('desktop');
+        var dRect = desktop.getBoundingClientRect();
+        var x = e.clientX - iconOffX - dRect.left;
+        var y = e.clientY - iconOffY - dRect.top;
+        // Clamp to desktop bounds
+        x = Math.max(0, Math.min(x, dRect.width - dragIcon.offsetWidth));
+        y = Math.max(0, Math.min(y, dRect.height - dragIcon.offsetHeight));
+        dragIcon.style.left = x + 'px';
+        dragIcon.style.top = y + 'px';
+        dragIcon.style.right = 'auto';
+        dragIcon.style.bottom = 'auto';
+      });
+
+      document.addEventListener('mouseup', function () {
+        if (dragIcon && !iconDragged) {
+          // It was a click, not a drag — open the window
+          var opens = dragIcon.dataset.opens;
+          if (opens) openWindow(opens);
+          else if (dragIcon.href) window.location = dragIcon.href;
+        }
+        dragIcon = null;
+      });
+
+      // Prevent default link behavior on all desktop icons (handled by mouseup)
+      document.querySelectorAll('.desktop-icon').forEach(function (icon) {
+        icon.addEventListener('click', function (e) { e.preventDefault(); });
+      });
+
+      // ── Touch support for icon dragging ──
+      document.querySelectorAll('.desktop-icon').forEach(function (icon) {
+        icon.addEventListener('touchstart', function (e) {
+          var t = e.touches[0];
+          dragIcon = icon;
+          iconDragged = false;
+          iconStartX = t.clientX;
+          iconStartY = t.clientY;
+          var rect = icon.getBoundingClientRect();
+          iconOffX = t.clientX - rect.left;
+          iconOffY = t.clientY - rect.top;
+        }, { passive: true });
+      });
+
+      document.addEventListener('touchmove', function (e) {
+        if (!dragIcon) return;
+        var t = e.touches[0];
+        var dx = t.clientX - iconStartX;
+        var dy = t.clientY - iconStartY;
+        if (!iconDragged && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
+        iconDragged = true;
+        e.preventDefault();
+        var desktop = document.getElementById('desktop');
+        var dRect = desktop.getBoundingClientRect();
+        var x = t.clientX - iconOffX - dRect.left;
+        var y = t.clientY - iconOffY - dRect.top;
+        x = Math.max(0, Math.min(x, dRect.width - dragIcon.offsetWidth));
+        y = Math.max(0, Math.min(y, dRect.height - dragIcon.offsetHeight));
+        dragIcon.style.left = x + 'px';
+        dragIcon.style.top = y + 'px';
+        dragIcon.style.right = 'auto';
+        dragIcon.style.bottom = 'auto';
+      }, { passive: false });
+
+      document.addEventListener('touchend', function () {
+        if (dragIcon && !iconDragged) {
+          var opens = dragIcon.dataset.opens;
+          if (opens) openWindow(opens);
+          else if (dragIcon.href) window.location = dragIcon.href;
+        }
+        dragIcon = null;
       });
 
       // ── Taskbar ──
