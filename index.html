@@ -17,6 +17,11 @@
       --win-mid-dark: rgba(65, 65, 67, 0.75);
       --win-mid-light: #D1D3D4;
       --desktop-bg: #008080;
+      /* Win95 pixel-art cursors as inline SVGs */
+      --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M0 0 L0 24 L5 19 L9 27 L13 25 L9 17 L16 17 Z' fill='white' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0, default;
+      --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10 0 L10 16 L13 13 L16 20 L19 19 L16 12 L21 12 Z' fill='white' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M10 1 L10 5' stroke='black' stroke-width='1'/%3E%3C/svg%3E") 10 0, pointer;
+      --cursor-grab: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 11 Q8 7 11 7 L11 5 Q11 3 13 3 Q15 3 15 5 L15 4 Q15 2 17 2 Q19 2 19 4 L19 5 Q19 3 21 3 Q23 3 23 5 L23 12 L25 12 Q27 12 27 14 L27 24 Q27 28 23 28 L13 28 Q9 28 8 24 Z' fill='white' stroke='black' stroke-width='1.2'/%3E%3Cline x1='11' y1='7' x2='11' y2='14' stroke='black' stroke-width='0.8'/%3E%3Cline x1='15' y1='5' x2='15' y2='14' stroke='black' stroke-width='0.8'/%3E%3Cline x1='19' y1='4' x2='19' y2='14' stroke='black' stroke-width='0.8'/%3E%3Cline x1='23' y1='5' x2='23' y2='12' stroke='black' stroke-width='0.8'/%3E%3C/svg%3E") 16 8, grab;
+      --cursor-wait: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M0 0 L0 24 L5 19 L9 27 L13 25 L9 17 L16 17 Z' fill='white' stroke='black' stroke-width='1.5'/%3E%3Crect x='17' y='14' width='14' height='14' rx='1' fill='%23C0C0C0' stroke='black' stroke-width='1'/%3E%3Ccircle cx='24' cy='21' r='5' fill='white' stroke='black' stroke-width='1'/%3E%3Cline x1='24' y1='21' x2='24' y2='17.5' stroke='black' stroke-width='1'/%3E%3Cline x1='24' y1='21' x2='27' y2='21' stroke='black' stroke-width='1'/%3E%3C/svg%3E") 0 0, wait;
       --title-active: linear-gradient(90deg, #2B6991 0%, #1E93D0 40%, #1E93D0 60%, #5BBCDB 100%);
       --title-inactive: linear-gradient(90deg, #808080 0%, #B5B5B5 100%);
       --bevel-out:
@@ -47,7 +52,7 @@
       background-color: var(--desktop-bg);
       height: 100vh;
       overflow: hidden;
-      cursor: default;
+      cursor: var(--cursor-default);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -55,8 +60,26 @@
     .desktop {
       position: relative;
       width: 100%;
-      height: calc(100vh - 40px);
+      height: 100vh;
       overflow: hidden;
+    }
+
+    /* ===== RETRO CURSORS ===== */
+    a, button, .btn, .title-bar-btn, .player-btn, .desktop-icon,
+    .song-row, .gallery-item, .download-btn {
+      cursor: var(--cursor-pointer);
+    }
+
+    .title-bar {
+      cursor: var(--cursor-grab);
+    }
+
+    .title-bar:active {
+      cursor: var(--cursor-grab);
+    }
+
+    input[type="range"] {
+      cursor: var(--cursor-pointer);
     }
 
     /* ===== DESKTOP ICONS ===== */
@@ -71,7 +94,6 @@
       width: 96px;
       padding: 8px;
       border: 1px solid transparent;
-      cursor: pointer;
       user-select: none;
     }
 
@@ -121,14 +143,11 @@
       gap: 4px;
       min-height: 22px;
       user-select: none;
-      cursor: grab;
     }
 
     .title-bar.active {
       background: var(--title-active);
     }
-
-    .title-bar:active { cursor: grabbing; }
 
     .title-bar-text {
       font-weight: bold;
@@ -156,7 +175,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
       padding: 0;
       line-height: 1;
     }
@@ -193,7 +211,6 @@
       font-family: inherit;
       font-size: 11px;
       padding: 3px 12px;
-      cursor: pointer;
       white-space: nowrap;
     }
 
@@ -241,7 +258,7 @@
     }
     .gallery-item {
       display: flex; flex-direction: column; align-items: center;
-      gap: 4px; padding: 6px; cursor: pointer; border: 1px solid transparent;
+      gap: 4px; padding: 6px; border: 1px solid transparent;
     }
     .gallery-item:hover { background: #E0E0E0; }
     .gallery-item.selected { background: #000080; color: #fff; border: 1px dotted #fff; }
@@ -274,7 +291,7 @@
     .player-btn {
       background: var(--win-bg); box-shadow: var(--bevel-out-sm);
       border: none; width: 28px; height: 22px; font-size: 11px;
-      cursor: pointer; display: flex; align-items: center;
+      display: flex; align-items: center;
       justify-content: center; font-family: inherit;
     }
     .player-btn:active, .player-btn.active { box-shadow: var(--bevel-in-sm); }
@@ -284,7 +301,7 @@
     /* Range inputs */
     input[type="range"] {
       -webkit-appearance: none; appearance: none;
-      height: 20px; background: transparent; cursor: pointer;
+      height: 20px; background: transparent;
     }
     input[type="range"]::-webkit-slider-runnable-track {
       height: 4px; background: #808080;
@@ -312,7 +329,7 @@
     }
     .song-row {
       display: flex; align-items: center; padding: 3px 8px;
-      gap: 8px; font-size: 11px; cursor: pointer; user-select: none;
+      gap: 8px; font-size: 11px; user-select: none;
     }
     .song-row:nth-child(odd) { background: #EDEDED; }
     .song-row:nth-child(even) { background: var(--win-mid-light); }
@@ -330,35 +347,6 @@
     .download-btn:active { box-shadow: var(--bevel-in-sm); }
     .song-row.active .download-btn { color: #000; }
 
-    /* ===== TASKBAR ===== */
-    .taskbar {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      height: 40px; background: var(--win-bg);
-      box-shadow: var(--bevel-out-sm);
-      display: flex; align-items: center;
-      padding: 4px; gap: 4px; z-index: 4000;
-    }
-    .start-btn {
-      display: flex; align-items: center; gap: 4px;
-      font-weight: bold; font-size: 12px; padding: 3px 8px; height: 28px;
-    }
-    .start-btn img { width: 18px; height: 18px; image-rendering: pixelated; }
-    .taskbar-divider {
-      width: 2px; height: 28px;
-      border-left: 1px solid #808080; border-right: 1px solid #fff; margin: 0 2px;
-    }
-    .taskbar-windows { display: flex; gap: 3px; flex: 1; overflow: hidden; }
-    .taskbar-item {
-      font-size: 11px; padding: 3px 8px; height: 24px; max-width: 160px;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .taskbar-item.active { box-shadow: var(--bevel-in-sm); }
-    .taskbar-clock {
-      box-shadow: var(--bevel-in-sm); padding: 3px 12px;
-      font-size: 11px; height: 24px;
-      display: flex; align-items: center; white-space: nowrap;
-    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
@@ -758,13 +746,7 @@
     <button class="btn lightbox-close" id="lightbox-close">&#10005; Close</button>
   </div>
 
-  <!-- TASKBAR -->
-  <div class="taskbar">
-    <button class="btn start-btn" id="start-btn">&#9776; Hello World</button>
-    <div class="taskbar-divider"></div>
-    <div class="taskbar-windows" id="taskbar-windows"></div>
-    <div class="taskbar-clock" id="clock"></div>
-  </div>
+
 
   <script>
     (function () {
@@ -778,10 +760,6 @@
         });
         win.querySelector('.title-bar').classList.add('active');
         win.style.zIndex = ++zIndex;
-        // Update taskbar
-        document.querySelectorAll('.taskbar-item').forEach(function (btn) {
-          btn.classList.toggle('active', btn.dataset.windowId === win.id);
-        });
       }
 
       function openWindow(id) {
@@ -789,12 +767,10 @@
         if (!win) return;
         win.classList.add('open');
         activateWindow(win);
-        updateTaskbar();
       }
 
       function closeWindow(win) {
         win.classList.remove('open');
-        updateTaskbar();
       }
 
       function minimizeWindow(win) {
@@ -943,36 +919,6 @@
         dragIcon = null;
       });
 
-      // ── Taskbar ──
-      var taskbarWindows = document.getElementById('taskbar-windows');
-
-      function updateTaskbar() {
-        taskbarWindows.innerHTML = '';
-        document.querySelectorAll('.window').forEach(function (win) {
-          var title = win.querySelector('.title-bar-text').textContent;
-          var isOpen = win.classList.contains('open');
-          var btn = document.createElement('button');
-          btn.className = 'btn taskbar-item';
-          btn.dataset.windowId = win.id;
-          btn.textContent = title;
-          if (isOpen) {
-            var isActive = win.querySelector('.title-bar').classList.contains('active');
-            if (isActive) btn.classList.add('active');
-          } else {
-            btn.style.opacity = '0.6';
-          }
-          btn.addEventListener('click', function () {
-            if (win.classList.contains('open')) {
-              activateWindow(win);
-            } else {
-              openWindow(win.id);
-            }
-          });
-          taskbarWindows.appendChild(btn);
-        });
-      }
-      updateTaskbar();
-
       // ── Audio Player ──
       var audio = document.getElementById('audio');
       var playlist = document.getElementById('playlist');
@@ -1083,14 +1029,6 @@
         if (e.key === 'Escape' && lightbox.classList.contains('open')) lightbox.classList.remove('open');
       });
 
-      // ── Taskbar Clock ──
-      function updateClock() {
-        var now = new Date();
-        var h = now.getHours(), m = String(now.getMinutes()).padStart(2, '0');
-        document.getElementById('clock').textContent = (h % 12 || 12) + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM');
-      }
-      updateClock();
-      setInterval(updateClock, 15000);
 
     })();
   </script>
