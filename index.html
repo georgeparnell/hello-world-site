@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello World</title>
   <meta name="description" content="Hello World - Official Band Website">
-  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" href="assets/images/globe.png">
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,7 +49,10 @@
     body {
       font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
       font-size: 12px;
-      background-color: var(--desktop-bg);
+      background-color: #59acac;
+      background-image: url('assets/images/globe.png');
+      background-size: 192px;
+      background-repeat: repeat;
       height: 100vh;
       overflow: hidden;
       cursor: var(--cursor-default);
@@ -369,201 +372,45 @@
 
     <!-- ===== DESKTOP ICONS (scattered across desktop) ===== -->
 
-    <!-- Music Player — music note icon (media player style) -->
+    <!-- Music -->
     <a class="desktop-icon" data-opens="music-player" style="top: 30%; left: 38%;">
-      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
-        <!-- Orange/gold music note on dark background -->
-        <rect x="1" y="1" width="30" height="30" fill="#000080"/>
-        <rect x="2" y="2" width="28" height="28" fill="#000058"/>
-        <rect x="0" y="0" width="32" height="1" fill="#808080"/>
-        <rect x="0" y="0" width="1" height="32" fill="#808080"/>
-        <rect x="0" y="31" width="32" height="1" fill="#404040"/>
-        <rect x="31" y="0" width="1" height="32" fill="#404040"/>
-        <!-- Beam -->
-        <rect x="11" y="5" width="14" height="2" fill="#FFB800"/>
-        <rect x="11" y="7" width="14" height="1" fill="#CC9200"/>
-        <!-- Stems -->
-        <rect x="11" y="5" width="2" height="17" fill="#FFB800"/>
-        <rect x="13" y="5" width="1" height="17" fill="#CC9200"/>
-        <rect x="23" y="5" width="2" height="13" fill="#FFB800"/>
-        <rect x="25" y="5" width="1" height="13" fill="#CC9200"/>
-        <!-- Left note head -->
-        <rect x="6" y="21" width="7" height="4" fill="#FFB800"/>
-        <rect x="5" y="22" width="1" height="2" fill="#FFB800"/>
-        <rect x="6" y="25" width="7" height="1" fill="#CC9200"/>
-        <rect x="13" y="22" width="1" height="3" fill="#CC9200"/>
-        <!-- Right note head -->
-        <rect x="18" y="17" width="7" height="4" fill="#FFB800"/>
-        <rect x="17" y="18" width="1" height="2" fill="#FFB800"/>
-        <rect x="18" y="21" width="7" height="1" fill="#CC9200"/>
-        <rect x="25" y="18" width="1" height="3" fill="#CC9200"/>
-        <!-- Highlights -->
-        <rect x="7" y="22" width="2" height="1" fill="#FFD866"/>
-        <rect x="19" y="18" width="2" height="1" fill="#FFD866"/>
-      </svg>
+      <img class="icon-default" src="assets/images/music.png" alt="Music">
+      <img class="icon-hover" src="assets/images/music-hover.png" alt="Music">
       <span class="icon-label">Music</span>
     </a>
 
-    <!-- About — notepad icon -->
+    <!-- About -->
     <a class="desktop-icon" data-opens="about" style="top: 45%; left: 55%;">
-      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
-        <!-- Page body -->
-        <rect x="6" y="2" width="20" height="28" fill="#FFFFF0"/>
-        <rect x="6" y="2" width="20" height="3" fill="#0000AA"/>
-        <!-- Borders -->
-        <rect x="5" y="2" width="1" height="28" fill="#808080"/>
-        <rect x="26" y="2" width="1" height="28" fill="#404040"/>
-        <rect x="6" y="30" width="20" height="1" fill="#404040"/>
-        <rect x="6" y="2" width="20" height="1" fill="#C0C0C0"/>
-        <!-- Title bar text -->
-        <rect x="8" y="3" width="8" height="1" fill="#FFF"/>
-        <!-- Spiral binding -->
-        <rect x="3" y="5" width="4" height="2" fill="#FF0000"/>
-        <rect x="3" y="10" width="4" height="2" fill="#FF0000"/>
-        <rect x="3" y="15" width="4" height="2" fill="#FF0000"/>
-        <rect x="3" y="20" width="4" height="2" fill="#FF0000"/>
-        <rect x="3" y="25" width="4" height="2" fill="#FF0000"/>
-        <!-- Text lines -->
-        <rect x="9" y="8" width="14" height="1" fill="#000080"/>
-        <rect x="9" y="11" width="14" height="1" fill="#000080"/>
-        <rect x="9" y="14" width="10" height="1" fill="#000080"/>
-        <rect x="9" y="17" width="14" height="1" fill="#000080"/>
-        <rect x="9" y="20" width="12" height="1" fill="#000080"/>
-        <rect x="9" y="23" width="8" height="1" fill="#000080"/>
-        <rect x="9" y="26" width="14" height="1" fill="#000080"/>
-      </svg>
+      <img class="icon-default" src="assets/images/about.png" alt="About">
+      <img class="icon-hover" src="assets/images/about-hover.png" alt="About">
       <span class="icon-label">About</span>
     </a>
 
-    <!-- Shows — calendar icon -->
+    <!-- Shows -->
     <a class="desktop-icon" data-opens="shows" style="top: 58%; left: 25%;">
-      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
-        <!-- Calendar body -->
-        <rect x="2" y="4" width="28" height="26" fill="#FFFFFF"/>
-        <!-- Red header -->
-        <rect x="2" y="4" width="28" height="5" fill="#CC0000"/>
-        <rect x="3" y="5" width="26" height="3" fill="#EE0000"/>
-        <!-- Border/shadow -->
-        <rect x="1" y="4" width="1" height="26" fill="#C0C0C0"/>
-        <rect x="30" y="4" width="1" height="26" fill="#808080"/>
-        <rect x="2" y="30" width="28" height="1" fill="#808080"/>
-        <!-- Ring bindings -->
-        <rect x="8" y="1" width="3" height="5" fill="#808080"/>
-        <rect x="9" y="1" width="1" height="5" fill="#C0C0C0"/>
-        <rect x="21" y="1" width="3" height="5" fill="#808080"/>
-        <rect x="22" y="1" width="1" height="5" fill="#C0C0C0"/>
-        <!-- Grid cells row 1 -->
-        <rect x="4" y="11" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="11" y="11" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="18" y="11" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="25" y="11" width="4" height="4" fill="#E8E8E8"/>
-        <!-- Grid cells row 2 -->
-        <rect x="4" y="17" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="11" y="17" width="5" height="4" fill="#FFCC00"/>
-        <rect x="18" y="17" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="25" y="17" width="4" height="4" fill="#E8E8E8"/>
-        <!-- Grid cells row 3 -->
-        <rect x="4" y="23" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="11" y="23" width="5" height="4" fill="#E8E8E8"/>
-        <rect x="18" y="23" width="5" height="4" fill="#E8E8E8"/>
-        <!-- Grid lines -->
-        <rect x="3" y="10" width="26" height="1" fill="#C0C0C0"/>
-        <rect x="3" y="16" width="26" height="1" fill="#C0C0C0"/>
-        <rect x="3" y="22" width="26" height="1" fill="#C0C0C0"/>
-        <rect x="10" y="10" width="1" height="18" fill="#C0C0C0"/>
-        <rect x="17" y="10" width="1" height="18" fill="#C0C0C0"/>
-        <rect x="24" y="10" width="1" height="18" fill="#C0C0C0"/>
-      </svg>
+      <img class="icon-default" src="assets/images/calendar.png" alt="Shows">
+      <img class="icon-hover" src="assets/images/calendar-hover.png" alt="Shows">
       <span class="icon-label">Shows</span>
     </a>
 
-    <!-- Misc — classic folder icon -->
+    <!-- Misc -->
     <a class="desktop-icon" data-opens="misc" style="top: 10%; left: 42%;">
-      <img class="icon-default" src="assets/images/folder-closed.png" alt="Misc">
-      <img class="icon-hover" src="assets/images/folder-open.png" alt="Misc">
+      <img class="icon-default" src="assets/images/misc.png" alt="Misc">
+      <img class="icon-hover" src="assets/images/misc-hover.png" alt="Misc">
       <span class="icon-label">Misc</span>
     </a>
 
-    <!-- Links — globe/www icon -->
+    <!-- Links -->
     <a class="desktop-icon" data-opens="links" style="top: 28%; left: 72%;">
-      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
-        <!-- Globe circle -->
-        <rect x="10" y="2" width="12" height="1" fill="#0066CC"/>
-        <rect x="7" y="3" width="3" height="1" fill="#0066CC"/>
-        <rect x="22" y="3" width="3" height="1" fill="#0066CC"/>
-        <rect x="5" y="4" width="2" height="2" fill="#0066CC"/>
-        <rect x="25" y="4" width="2" height="2" fill="#0066CC"/>
-        <rect x="4" y="6" width="1" height="3" fill="#0066CC"/>
-        <rect x="27" y="6" width="1" height="3" fill="#0066CC"/>
-        <rect x="3" y="9" width="1" height="6" fill="#0066CC"/>
-        <rect x="28" y="9" width="1" height="6" fill="#0066CC"/>
-        <rect x="4" y="15" width="1" height="3" fill="#0066CC"/>
-        <rect x="27" y="15" width="1" height="3" fill="#0066CC"/>
-        <rect x="5" y="18" width="2" height="2" fill="#0066CC"/>
-        <rect x="25" y="18" width="2" height="2" fill="#0066CC"/>
-        <rect x="7" y="20" width="3" height="1" fill="#0066CC"/>
-        <rect x="22" y="20" width="3" height="1" fill="#0066CC"/>
-        <rect x="10" y="21" width="12" height="1" fill="#0066CC"/>
-        <!-- Fill inside -->
-        <rect x="7" y="4" width="18" height="16" fill="#3399FF"/>
-        <rect x="5" y="6" width="22" height="12" fill="#3399FF"/>
-        <rect x="4" y="9" width="24" height="6" fill="#3399FF"/>
-        <!-- Horizontal lines (latitude) -->
-        <rect x="4" y="8" width="24" height="1" fill="#0066CC"/>
-        <rect x="3" y="12" width="26" height="1" fill="#0066CC"/>
-        <rect x="4" y="16" width="24" height="1" fill="#0066CC"/>
-        <!-- Vertical meridian -->
-        <rect x="15" y="2" width="2" height="20" fill="#0066CC"/>
-        <!-- Curved meridians -->
-        <rect x="11" y="3" width="1" height="18" fill="#0077DD"/>
-        <rect x="20" y="3" width="1" height="18" fill="#0077DD"/>
-        <!-- Continents (green patches) -->
-        <rect x="7" y="5" width="4" height="3" fill="#228B22"/>
-        <rect x="6" y="6" width="3" height="2" fill="#228B22"/>
-        <rect x="18" y="6" width="5" height="2" fill="#228B22"/>
-        <rect x="19" y="5" width="3" height="1" fill="#228B22"/>
-        <rect x="8" y="10" width="3" height="2" fill="#228B22"/>
-        <rect x="22" y="9" width="4" height="3" fill="#228B22"/>
-        <rect x="12" y="14" width="3" height="3" fill="#228B22"/>
-        <rect x="23" y="14" width="3" height="2" fill="#228B22"/>
-        <!-- Page curl / stand -->
-        <rect x="13" y="23" width="6" height="1" fill="#808080"/>
-        <rect x="11" y="24" width="10" height="1" fill="#808080"/>
-        <rect x="10" y="25" width="12" height="1" fill="#C0C0C0"/>
-        <rect x="8" y="26" width="16" height="2" fill="#808080"/>
-        <rect x="9" y="26" width="14" height="1" fill="#C0C0C0"/>
-      </svg>
+      <img class="icon-default" src="assets/images/links.png" alt="Links">
+      <img class="icon-hover" src="assets/images/links-hover.png" alt="Links">
       <span class="icon-label">Links</span>
     </a>
 
-    <!-- Email — envelope icon -->
+    <!-- Email -->
     <a class="desktop-icon" href="mailto:hello@example.com" style="top: 62%; left: 62%;">
-      <svg viewBox="0 0 32 32" shape-rendering="crispEdges">
-        <!-- Envelope body -->
-        <rect x="2" y="6" width="28" height="20" fill="#FFFFF0"/>
-        <!-- Border -->
-        <rect x="1" y="6" width="1" height="20" fill="#D1D3D4"/>
-        <rect x="30" y="6" width="1" height="20" fill="#808080"/>
-        <rect x="2" y="26" width="28" height="1" fill="#808080"/>
-        <rect x="2" y="6" width="28" height="1" fill="#E8E8E8"/>
-        <!-- Flap (V shape) -->
-        <rect x="2" y="7" width="2" height="1" fill="#4040CC"/>
-        <rect x="4" y="8" width="2" height="1" fill="#4040CC"/>
-        <rect x="6" y="9" width="2" height="1" fill="#4040CC"/>
-        <rect x="8" y="10" width="2" height="1" fill="#4040CC"/>
-        <rect x="10" y="11" width="2" height="1" fill="#4040CC"/>
-        <rect x="12" y="12" width="2" height="1" fill="#4040CC"/>
-        <rect x="14" y="13" width="4" height="1" fill="#4040CC"/>
-        <rect x="18" y="12" width="2" height="1" fill="#4040CC"/>
-        <rect x="20" y="11" width="2" height="1" fill="#4040CC"/>
-        <rect x="22" y="10" width="2" height="1" fill="#4040CC"/>
-        <rect x="24" y="9" width="2" height="1" fill="#4040CC"/>
-        <rect x="26" y="8" width="2" height="1" fill="#4040CC"/>
-        <rect x="28" y="7" width="2" height="1" fill="#4040CC"/>
-        <!-- Stamp -->
-        <rect x="23" y="9" width="5" height="4" fill="#CC0000"/>
-        <rect x="24" y="10" width="3" height="2" fill="#FF4444"/>
-      </svg>
+      <img class="icon-default" src="assets/images/email.png" alt="Email">
+      <img class="icon-hover" src="assets/images/email-hover.png" alt="Email">
       <span class="icon-label">Email</span>
     </a>
 
