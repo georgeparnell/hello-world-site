@@ -414,7 +414,20 @@
       <span class="icon-label">Email</span>
     </a>
 
-    <!-- ===== WINDOWS (all hidden by default) ===== -->
+    <!-- ===== WINDOWS ===== -->
+
+    <!-- LOGO (open by default) -->
+    <div class="window open" id="logo-window" style="width: 360px; top: 20px; left: 20px;">
+      <div class="title-bar">
+        <span class="title-bar-text">logo.png</span>
+        <div class="title-bar-controls">
+          <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
+        </div>
+      </div>
+      <div class="window-body no-pad">
+        <img src="assets/images/logo.png" alt="Hello World" style="display: block; width: 100%;">
+      </div>
+    </div>
 
     <!-- MUSIC PLAYER -->
     <div class="window" id="music-player" style="width: 460px; top: 40px; left: 140px;">
@@ -459,7 +472,7 @@
     <!-- ABOUT -->
     <div class="window" id="about" style="width: 400px; top: 80px; left: 220px;">
       <div class="title-bar">
-        <span class="title-bar-text">About - Hello World</span>
+        <span class="title-bar-text">About</span>
         <div class="title-bar-controls">
           <button class="title-bar-btn win-minimize" aria-label="Minimize">_</button>
           <button class="title-bar-btn win-close" aria-label="Close">&#10005;</button>
@@ -467,17 +480,7 @@
       </div>
       <div class="window-body" style="max-height: 320px;">
         <div class="about-content">
-          <h2>Hello World</h2>
-          <p>Welcome to our corner of the internet. Click around. Listen to some songs. Come see us play.</p>
-          <h3>Members</h3>
-          <ul>
-            <li>Member One - Guitar, Vocals</li>
-            <li>Member Two - Bass</li>
-            <li>Member Three - Drums</li>
-          </ul>
-          <h3>Bio</h3>
-          <p>Hello World is a band from [City, State]. We started playing music in [year] and haven't stopped since. Our sound is [describe your sound]. We record everything ourselves and release it for free because music should be free.</p>
-          <p>For booking inquiries, email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+          <p>Hello World is a 3-piece guitar band based in Bristol, UK, formed in 2026.</p>
         </div>
       </div>
     </div>
@@ -560,7 +563,7 @@
           <p style="margin-bottom: 10px; color: #808080; font-size: 11px;">Find us around the web:</p>
           <ul>
             <li><a href="https://spotify.com" target="_blank" rel="noopener">&#9654; Spotify</a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noopener">&#9654; Instagram</a></li>
+            <li><a href="https://instagram.com/helloworldisaband/" target="_blank" rel="noopener">&#9654; Instagram</a></li>
             <li><a href="https://bandcamp.com" target="_blank" rel="noopener">&#9654; Bandcamp</a></li>
             <li><a href="mailto:hello@example.com">&#9654; Email (hello@example.com)</a></li>
           </ul>
@@ -649,6 +652,7 @@
         dragWin.style.left = x + 'px';
         dragWin.style.top = y + 'px';
         dragWin.style.right = 'auto';
+        dragWin.style.transform = 'none';
       });
 
       document.addEventListener('mouseup', function () { dragWin = null; });
