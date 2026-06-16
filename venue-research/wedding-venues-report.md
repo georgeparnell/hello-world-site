@@ -42,6 +42,50 @@ Tasteful middle-ground venues for **~100 seated**: characterful **"done-up" barn
 
 ---
 
+## 🍺 The DIY plan: dry hire + buffet + free BYO bar + own music
+
+**This is the core ask, so it leads the report.** The plan — own buffet, **free** (not sold) BYO bar, own live music — removes almost all licensing pressure:
+
+- **Free alcohol needs no licence.** Licensing only applies to the *sale* of alcohol. A genuinely free bar at a private wedding = no premises licence, no Temporary Event Notice. (Charge anything, even a donation/ticket, and it becomes a sale needing a **TEN** ~£21.)
+- **Buffet / own food needs no licence** — just a venue that allows DIY or external catering.
+- **Live music is deregulated 08:00–23:00** for audiences under 500, even in an unlicensed hall. Want music **past 11pm**? Get a **TEN (~£21, ≥10 working days ahead)** — that's the only paperwork the whole plan might need.
+
+**So the real filter is the venue's *terms*, not the law. Confirm three things on every shortlist call:** ① **BYO alcohol allowed** (some "dry hire" barns still force their own bar company — you want "no corkage / BYO bar"); ② **own/DIY caterer allowed** (not in-house-only or an approved list); ③ **music curfew** (often 11pm/midnight).
+
+### Best dry-hire BARNS for full DIY freedom (nice in & out, ~100, BYO-friendly)
+
+| Venue | Region | Look / setting | Seated | Dry-hire price | BYO bar / own caterer? | Notes |
+|---|---|---|---|---|---|---|
+| **Hillfields Farm** | Wokingham/Oxon border | 300-yr oak barns, valley views | 120 | **£2,995–7,250**, 48-hr access | ✅ **No corkage, no catering fees, no supplier restrictions** | The gold standard for DIY freedom |
+| **Winterbourne Medieval Barn** | Bristol (S. Glos) | Restored medieval barn, charity | 120–150 | *est.* **£1,500–3,000/wknd** | ✅ **BYO food & alcohol, own caterer** | Best budget + freedom combo |
+| **Acorn Barn** | Stadhampton, Oxon (Chilterns) | DIY barn, 3 acres gardens | 150 | *est.* **from £4,500** | ✅ **No corkage, BYO bar & caterers** | True blank canvas; May–Sep |
+| **Combe Manor Barns** | nr Hungerford (N. Wessex) | C19th manor barns, hidden valley | 80–150 | *est.* dry hire | ✅ **No VAT, no corkage** | Un-corporate; multi-day decorating |
+| **Monks' Barn** | Hurley (Chilterns) | 13th-c. medieval barn, riverside | 120 | **from £2,500** | ✅ own caterers/suppliers | Authentic; **May–Sept only** |
+| **Templars Barn** | Hungerford (N. Wessex) | Barn (1998 rebuild), tidy | 130 | **£2,995 / £3,750** inc 2 set-up days, tables, loos | ✅ BYO caterers | Good value & capacity |
+| **Barford Park Barn** | S. Wiltshire | Restored farm barn, Avon-valley views | 150 | **£4,000 / 4-day** inc kitchen/WC | ✅ BYO/DIY | Whole-weekend DIY value |
+| **The Wool Barn (Frampton)** | Bristol/Glos | Grade I 1560s barn, estate farmyard | ~100 | *est.* blank-canvas dry hire | ✅ own suppliers | Prettiest pure-character barn |
+| **Fison Barn (Earth Trust)** | Little Wittenham, Oxon | Restored C19th oak barn, AONB | 150 | *est.* ~£5k base, big off-peak discounts | ✅ blank canvas DIY | Charity-run |
+| **Manor Barn, Yattendon** | Yattendon (N. Wessex) | C17th tithe barn, estate village | 150 | *est.* dry hire Fri–Mon | ✅ own caterers/decor | Long DIY window |
+| **North Hidden Barn** | Hungerford (N. Wessex) | Private farm barn, low-key | ~100 | *est.* modest dry hire | ✅ DIY | Genuinely rural; May–Sep |
+| **Cold Harbour Barn** | nr Wantage, Oxon | Restored barn, valley views, own bar area | 100 | *est.* £3,000–4,500 | ❓ confirm BYO | Pretty valley setting |
+
+### Nicer dry-hire HALLS (inherently full-DIY, not chintzy, budget)
+
+| Venue | Region | Look | Seated | Price | Notes |
+|---|---|---|---|---|---|
+| **Cromhall Village Hall** | Bristol (S. Glos) | Victorian estate hall, beamed/vaulted | 120 | **~£7.50/hr** | Best value-for-character anywhere |
+| **Chew Magna Old School Room** | Bristol (Chew Valley) | c.1510 beamed Tudor hall + courtyard | ~100 | community rates | Characterful; tight at exactly 100 |
+| **Woodclyffe Hall** | Wargrave (Wokingham) | **Grade II Victorian** hall, stage | 120 | council hourly | Period character, not granny-ish |
+| **Hambleden Village Hall** | Hambleden (Chilterns) | Brick hall, Chiltern valley views, patio | ~100 | **~£250–300/day** +£70 admin | Picture-postcard village |
+| **Court Garden House** | Marlow (Chilterns) | Georgian house, terrace over Thames park | 100 | *est.* £1,500–3,000 | Elegant; 5-min to Marlow registrars |
+| **Watlington Town Hall** | Watlington (Chilterns) | 1664 market hall | ~80–100 | *est.* £20–40/hr | Heritage + budget; tight for full 100 |
+| **Hurst Village Hall** | Hurst (Wokingham) | Big hall + club-room bar space | 170 | **from ~£320** | Roomy; kitchen + parking |
+| **Alton Barnes Coronation Hall** | Pewsey Vale (N. Wessex) | White Horse & vale views | 100 | **£75/day** | Spectacular setting; plainer building |
+
+> **Top three for your exact plan (nice + ~100 + total DIY freedom):** **Hillfields Farm** (no-corkage, no-restriction barn), **Winterbourne Medieval Barn** (BYO food *and* booze, budget), and **The Wool Barn** (1560s character, blank-canvas) — with **Cromhall** or **Woodclyffe** as the bargain hall route. ✅ = venue states BYO/own-caterer allowed; ❓ = confirm directly.
+
+---
+
 ## 1 · North Wessex Downs AONB
 *West Berkshire · north Hampshire · Wiltshire — Hungerford, Newbury, Lambourn, Marlborough, Pewsey Vale, Kennet Valley.*
 **Register offices:** West Berkshire (Shaw House, Newbury); Wiltshire (Marlborough, Devizes, or county office Trowbridge); Oxon side (Wantage/Abingdon).
