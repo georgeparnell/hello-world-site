@@ -15,7 +15,9 @@ Tasteful middle-ground venues for **~100 seated**: characterful **"done-up" barn
 - 🏛️ **History deprioritised** — Victorian is plenty, and a **beautiful country setting counts as much as heritage**. Doesn't need to be medieval.
 - 💍 **On-site ceremony licence is a bonus, not required** — a **nearby register office** for the legal bit is a nice touch, so the nearest one is listed for each venue.
 
-**Price-band key** (rough total venue cost, not per-head catering): **£** = DIY hall, ~£100–500/day · **££** = ~£500–3,000 · **£££** = ~£3,000–6,000 · **££££** = £6,000+. "lic." = licensed for civil ceremonies on-site (Y / N / ? unconfirmed).
+**Price-band key** (rough total venue cost, not per-head catering): **£** = DIY hall, ~£100–500/day · **££** = ~£500–3,000 · **£££** = ~£3,000–6,000 · **££££** = £6,000+.
+
+**On the "lic." column — a licence is NOT needed for a reception.** A civil-ceremony licence only matters if you want the *legally-binding ceremony* held at the venue too. The plan here is the legal bit at a **register office** (or church) and the **reception** at the venue, so **every venue below works regardless of this column** — "Y" is simply a *bonus* (you could do the ceremony there as well); "N" / "?" just means do the ceremony elsewhere first. (Separately, to serve a bar / play amplified music late a venue needs a **premises licence** or a Temporary Event Notice — most have one; the few halls that cap amplified music are flagged in their notes.)
 
 **Sourcing caveat:** many venue and council/hall sites block automated fetching, so a number of prices are from directory snippets or are estimates (flagged *est.*). Village-hall hourly rates rarely include a wedding-specific quote. **Confirm every figure — and your actual date — directly**, as headline prices are usually weekday/off-season.
 
@@ -178,7 +180,7 @@ Tasteful middle-ground venues for **~100 seated**: characterful **"done-up" barn
 | **Kingscote Barn** | Kingscote (Cotswold edge) | Restored Cotswold-stone barn | up to 150 | **£££** from £3,180 (Jan wkdy); all-in from £5,750 | Y | Wotton-under-Edge | Real stone barn, affordable off-peak entry |
 | **Wick Farm Bath** | nr Bath | Medieval barn (1372), 37 acres | up to 132 | **£££** from £3,750 wkdy/Apr **inclusive** (meal, wine, linen, exclusive use) | Y | Bath | Best value-for-character; clean pricing |
 | **Tower Hill Vineyard (Ecotipi)** | Tytherington, S. Glos | Vineyard + field tipi | up to 200 | **£££** *est.* £3,000–10,000 (tipi hire req.), camping inc | ? (celebrant) | Yate | Pretty vineyard valley, scalable DIY |
-| **The Wool Barn, Frampton Court** | Frampton-on-Severn | Grade I 1560s barn, estate farmyard | ~100 (confirm) | **£££** *est.* blank-canvas **dry hire** | **N — reception only** | Yate/Gloucester | Best pure history; legal ceremony elsewhere |
+| **The Wool Barn, Frampton Court** | Frampton-on-Severn | Grade I 1560s barn, estate farmyard | ~100 (confirm) | **£££** *est.* blank-canvas **dry hire** | N (bonus only) | Yate/Gloucester | Best pure history; do the ceremony at the register office first — no drawback for a reception |
 | **The Barn at Berkeley** | Berkeley, Glos | 14th-c. medieval tithe barn | 150 (200 standing) | **£££** *est.* "moderate", exclusive use + coordinator | Y | Yate/Gloucester | Authentic, restored not beige |
 | **Pony Chew Valley** | Chew Magna | Restaurant + kitchen-garden event space | 100 (150 dancing) | **£££** *est.* £3,000–6,000; newly licensed 2025 | Y | Weston-s-Mare | Pretty kitchen-garden, exactly 100 |
 | **Aldwick Estate** | Redhill, N. Som | Two stone barns, English vineyard, Mendip views | up to 160 | **£££** *est.* contact (01934 864404) | Y | Weston-s-Mare | Vineyard + views; verify not too "machine"/large-scaled |
